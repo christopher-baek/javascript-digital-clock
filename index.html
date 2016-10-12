@@ -21,19 +21,34 @@
         <li>Clock will change color every hour</li>
       </ul>
 
+      <h2>Status</h2>
+
+      <ul>
+        <li>Refresh Interval: <span id="refreshIntervalDisplay"></span> ms</li>
+        <li>Minute Color: <span id="minuteColorDisplay"></span></li>
+        <li>Background Color: <span id="backgroundColorDisplay"></span></li>
+        <li>Clock Color: <span id="clockColorDisplay"></span></li>
+      </ul>
+
+      <h2>Controls</h2>
+
+      <ul>
+        <li>
+          <button type="button" id="increaseRefreshIntervalButton">Increase Refresh Interval</button>
+        </li>
+        <li>
+          <button type="button" id="decreaseRefreshIntervalButton">Decrease Refresh Interval</button>
+        </li>
+        <li>
+          <button type="button" id="changeBackgroundColorButton">Change Background Color</button>
+        </li>
+        <li>
+          <button type="button" id="changeClockColorButton">Change Clock Color</button>
+        </li>
+      </ul>
+
       <div id="clock">
         <span id="hours"></span>:<span id="minutes"></span>:<span id="seconds"></span>:<span id="milliseconds"></span>
-      </div>
-
-      <div id="status">
-        <h4>Refresh Interval: <span id="refreshIntervalDisplay"></span> ms</h4>
-        <h4>Minute Color: <span id="minuteColorDisplay"></span></h4>
-        <h4>Background Color: <span id="backgroundColorDisplay"></span></h4>
-        <h4>Clock Color: <span id="clockColorDisplay"></span></h4>
-        <button type="button" id="increaseRefreshIntervalButton">Increase Refresh Interval</button>
-        <button type="button" id="decreaseRefreshIntervalButton">Decrease Refresh Interval</button>
-        <button type="button" id="changeBackgroundColorButton">Change Background Color</button>
-        <button type="button" id="changeClockColorButton">Change Clock Color</button>
       </div>
     </div>
 
