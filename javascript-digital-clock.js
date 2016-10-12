@@ -91,7 +91,9 @@ function updateBackgroundChangeDate() {
  * values until a value that does NOT match the clock value is chosen.
  */
 function updateBackgroundColor() {
-	while (backgroundColor != clockColor) {
+	backgroundColor = selectRandomColor();
+
+	while (backgroundColor == clockColor) {
 		backgroundColor = selectRandomColor();
 	}
 }
@@ -101,7 +103,9 @@ function updateBackgroundColor() {
  * values until a value that does NOT match the background value is chosen.
  */
 function updateClockColor() {
-	while (clockColor != backgroundColor) {
+	clockColor = selectRandomColor();
+
+	while (clockColor == backgroundColor) {
 		clockColor = selectRandomColor();
 	}
 }

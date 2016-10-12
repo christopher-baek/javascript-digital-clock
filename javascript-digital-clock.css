@@ -3,12 +3,12 @@
  * revealed via JavaScript once the page has been initialized.
  */
 
-#clock, #status {
+#clock, #status, h1 {
 	text-align: center;
 }
 #clockComponents {
 	display: none;
 }
 #clock {
-	font-size: 48px;	
+	font-size: 72px;
 }
