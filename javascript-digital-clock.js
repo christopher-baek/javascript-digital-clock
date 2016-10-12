@@ -1,4 +1,5 @@
-var MILLISECONDS_PER_SECOND = 1000;
+var DIGITS_HOUR_MIN_SEC = 2;
+var DIGITS_MILLISECOND = 3;
 
 function refreshTimeValues() {
 	// get current time values
@@ -6,23 +7,32 @@ function refreshTimeValues() {
 	var currentHours = now.getHours();
 	var currentMinutes = now.getMinutes();
 	var currentSeconds = now.getSeconds();
+	var currentMilliseconds = now.getMilliseconds();
 
 	// set time values in DOM
 	var hours = document.getElementById('hours');
-	hours.innerHTML = zeroPadValue(currentHours);
+	hours.innerHTML = zeroPadValue(currentHours, DIGITS_HOUR_MIN_SEC);
 
 	var minutes = document.getElementById('minutes');
-	minutes.innerHTML = zeroPadValue(currentMinutes);
+	minutes.innerHTML = zeroPadValue(currentMinutes, DIGITS_HOUR_MIN_SEC);
 
 	var seconds = document.getElementById('seconds');
-	seconds.innerHTML = zeroPadValue(currentSeconds);
+	seconds.innerHTML = zeroPadValue(currentSeconds, DIGITS_HOUR_MIN_SEC);
+
+	var milliseconds = document.getElementById('milliseconds');
+	milliseconds.innerHTML = zeroPadValue(currentMilliseconds, DIGITS_MILLISECOND);
 }
 
-function zeroPadValue(value) {
-	if (value < 10) {
-		return "0" + value;
+function zeroPadValue(value, digits) {
+	// convert to string
+	var stringValue = value.toString();
+
+	// pad zeroes if less than desired digits
+	if (stringValue.length < digits) {
+		var zeroesToAppend = digits - stringValue.length + 1;
+		return Array(zeroesToAppend).join('0') + stringValue;
 	} else {
-		return value;
+		return stringValue;
 	}
 }
 
@@ -43,7 +53,7 @@ function initialize() {
 }
 
 function startTimer() {
-	setInterval(refreshTimeValues, MILLISECONDS_PER_SECOND);
+	setInterval(refreshTimeValues, 1);
 }
 
 initialize();
