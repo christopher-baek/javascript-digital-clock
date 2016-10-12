@@ -1,6 +1,6 @@
 var DIGITS_HOUR_MIN_SEC = 2;
 var DIGITS_MILLISECOND = 3;
-var REFRESH_INTERVAL = 1;
+var REFRESH_INTERVAL = 500;
 var TIMER;
 
 function refreshTimeValues() {
