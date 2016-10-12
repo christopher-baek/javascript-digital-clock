@@ -228,6 +228,11 @@ function initializeControls() {
 	document.getElementById('decreaseRefreshIntervalButton').onclick = function() {
 		stopTimer();
 		refreshIntervalMilliseconds -= 10;
+
+		if (refreshIntervalMilliseconds < 0) {
+			refreshIntervalMilliseconds = 1;			
+		}
+
 		updateRefreshIntervalDisplay();
 		startTimer();
 	}
