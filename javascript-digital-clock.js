@@ -1,5 +1,7 @@
 var DIGITS_HOUR_MIN_SEC = 2;
 var DIGITS_MILLISECOND = 3;
+var REFRESH_INTERVAL = 1;
+var TIMER;
 
 function refreshTimeValues() {
 	// get current time values
@@ -36,6 +38,26 @@ function zeroPadValue(value, digits) {
 	}
 }
 
+function refreshRefreshInterval() {
+	document.getElementById('refreshInterval').innerHTML = REFRESH_INTERVAL;
+}
+
+function initializeRefreshControls() {
+	document.getElementById('increaseRefresh').onclick = function() {
+		stopTimer();
+		REFRESH_INTERVAL += 10;
+		refreshRefreshInterval();
+		startTimer();
+	}
+
+	document.getElementById('decreaseRefresh').onclick = function() {
+		stopTimer();
+		REFRESH_INTERVAL -= 10;
+		refreshRefreshInterval();
+		startTimer();
+	}
+}
+
 function hideLoadingStatus() {
 	var loading = document.getElementById('loading');
 	loading.style.display = 'none';
@@ -47,14 +69,20 @@ function showClock() {
 }
 
 function initialize() {
+	initializeRefreshControls();
+	refreshRefreshInterval();
 	refreshTimeValues();
 	hideLoadingStatus();
-	showClock();	
+	showClock();
+	startTimer();	
 }
 
 function startTimer() {
-	setInterval(refreshTimeValues, 1);
+	TIMER = setInterval(refreshTimeValues, REFRESH_INTERVAL);
+}
+
+function stopTimer() {
+	clearTimeout(TIMER);
 }
 
 initialize();
-startTimer();

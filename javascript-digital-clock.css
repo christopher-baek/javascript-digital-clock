@@ -1,8 +1,7 @@
-h1 {
+h1, div {
 	text-align: center;
 }
 #clock {
 	display: none;
 	font-size: 48px;
-	text-align: center;
 }
