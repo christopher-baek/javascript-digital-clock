@@ -10,10 +10,12 @@ var REFRESH_INTERVAL = 500;
 var BACKGROUND_CHANGE_INTERVAL = 5;
 var MINUTES_PER_HOUR = 60;
 var TIMER;
+var PREVIOUS_TIME;
 var CURRENT_TIME;
 var BACKGROUND_CHANGE_TIME;
 
-function refreshCurrentTime() {
+function refreshTime() {
+	PREVIOUS_TIME = CURRENT_TIME;
 	CURRENT_TIME = new Date();
 }
 
@@ -58,8 +60,16 @@ function refreshMinuteBasedColor() {
 		color = 'black';
 	}
 
-	var clock = document.getElementById('minutes');
-	clock.style.color = color;
+	var minutes = document.getElementById('minutes');
+	minutes.style.color = color;
+}
+function refreshHourBasedColor() {
+	if (PREVIOUS_TIME.getHours() != CURRENT_TIME.getHours()) {
+		var color = selectRandomColor();
+
+		var clock = document.getElementById('clock');
+		clock.style.color = color;
+	}
 }
 
 function refreshBackgroundColor() {
@@ -93,6 +103,7 @@ function selectRandomColor() {
 function refreshClock() {
 	refreshCurrentTime();
 	refreshTimeValues();
+	refreshHourBasedColor();
 	refreshMinuteBasedColor();
 	refreshBackgroundColor();
 }
@@ -143,7 +154,7 @@ function showClock() {
 function initialize() {
 	initializeRefreshControls();
 	refreshRefreshInterval();
-	refreshCurrentTime();
+	refreshTime();
 	refreshBackgroundChangeTime();
 	refreshTimeValues();
 	hideLoadingStatus();
