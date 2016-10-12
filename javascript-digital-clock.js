@@ -235,6 +235,7 @@ function initializeControls() {
 	// increase refresh interval button
 	document.getElementById('increaseRefreshIntervalButton').onclick = function() {
 		stopTimer();
+
 		refreshIntervalMilliseconds += 10;
 		updateRefreshIntervalDisplay();
 		startTimer();
@@ -245,7 +246,7 @@ function initializeControls() {
 		stopTimer();
 		refreshIntervalMilliseconds -= 10;
 
-		if (refreshIntervalMilliseconds < 0) {
+		if (refreshIntervalMilliseconds <= 0) {
 			refreshIntervalMilliseconds = 1;			
 		}
 
