@@ -130,6 +130,20 @@ function updateRefreshIntervalDisplay() {
 }
 
 /*
+ * Updates the DOM with the display value of the minute color.
+ */
+function updateMinuteColorDisplay() {
+	document.getElementById('minuteColorDisplay').innerHTML = minuteColor;
+}
+
+/*
+ * Updates the color of the minutes element on the page.
+ */
+function updatePageMinuteColor() {
+	document.getElementById('minutes').style.color = minuteColor;
+}
+
+/*
  * Updates the DOM with the display value of the background color.
  */
 function updateBackgroundColorDisplay() {
@@ -158,17 +172,15 @@ function updatePageClockColor() {
 }
 
 /*
- * Updates the DOM with the display value of the minute color.
+ * Updates the DOM with a formatted version of the background change date.
  */
-function updateMinuteColorDisplay() {
-	document.getElementById('minuteColorDisplay').innerHTML = minuteColor;
-}
+function updateBackgroundChangeDateDisplay() {
+	var hours = backgroundChangeDate.getHours();
+	var minutes = backgroundChangeDate.getMinutes();
 
-/*
- * Updates the color of the minutes element on the page.
- */
-function updatePageMinuteColor() {
-	document.getElementById('minutes').style.color = minuteColor;
+	var backgroundChangeDateDisplay = zeroPadValue(hours, DIGITS_HOUR_MIN_SEC) + ':' + zeroPadValue(minutes, DIGITS_HOUR_MIN_SEC);
+
+	document.getElementById('backgroundChangeDateDisplay').innerHTML = backgroundChangeDateDisplay;
 }
 
 /*
@@ -287,6 +299,9 @@ function refreshBackgroundColor() {
 		updateBackgroundColor();
 		updateBackgroundColorDisplay();
 		updatePageBackgroundColor();
+
+		updateBackgroundChangeDate();
+		updateBackgroundChangeDateDisplay();
 	}
 }
 
@@ -352,6 +367,8 @@ function initialize() {
 
 	updateClockColorDisplay();
 	updatePageClockColor();
+
+	updateBackgroundChangeDateDisplay();
 
 	updateCurrentDateDisplay();
 
