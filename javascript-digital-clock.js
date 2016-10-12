@@ -101,7 +101,7 @@ function selectRandomColor() {
 }
 
 function refreshClock() {
-	refreshCurrentTime();
+	refreshTime();
 	refreshTimeValues();
 	refreshHourBasedColor();
 	refreshMinuteBasedColor();
