@@ -1,7 +1,14 @@
-div {
+/**
+ * Initialize the page with clock and status hidden. These will be
+ * revealed via JavaScript once the page has been initialized.
+ */
+
+#clock, #status {
 	text-align: center;
 }
-#clock {
+#clockComponents {
 	display: none;
-	font-size: 48px;
+}
+#clock {
+	font-size: 48px;	
 }

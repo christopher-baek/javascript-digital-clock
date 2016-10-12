@@ -5,29 +5,38 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>JavaScript Digital Clock</title>
-    <link rel="stylesheet" type="text/css"
-          href="https://fonts.googleapis.com/css?family=Tangerine">
     <link rel="stylesheet" type="text/css" href="javascript-digital-clock.css">
   </head>
   <body>
-    <h1>JavaScript Digital Clock</h1>
-    <ul style="margin: 0 auto;">
-        <li>When the minute is even, the minutes will be black</li>
-        <li>When the minute is odd, the minutes will be blue</li>
-        <li>Background will change to a random color every 5 minutes</li>
-        <li>Clock will change color every hour
-        </li>
-      </ul>
     <div id="loading">Loading...</div>
-    <div id="clock">
-      <span id="hours"></span>:<span id="minutes"></span>:<span id="seconds"></span>:<span id="milliseconds"></span>
+    <div id="clockComponents">
+      <h1>JavaScript Digital Clock</h1>
+
+      <h2>Features</h2>
+
+      <ul>
+        <li>When the minute is even, the minutes will be blue</li>
+        <li>When the minute is odd, the minutes will be black</li>
+        <li>Background will change to a random color every 5 minutes</li>
+        <li>Clock will change color every hour</li>
+      </ul>
+
+      <div id="clock">
+        <span id="hours"></span>:<span id="minutes"></span>:<span id="seconds"></span>:<span id="milliseconds"></span>
+      </div>
+
+      <div id="status">
+        <h4>Refresh Interval: <span id="refreshIntervalDisplay"></span> ms</h4>
+        <h4>Minute Color: <span id="minuteColorDisplay"></span></h4>
+        <h4>Background Color: <span id="backgroundColorDisplay"></span></h4>
+        <h4>Clock Color: <span id="clockColorDisplay"></span></h4>
+        <button type="button" id="increaseRefreshIntervalButton">Increase Refresh Interval</button>
+        <button type="button" id="decreaseRefreshIntervalButton">Decrease Refresh Interval</button>
+        <button type="button" id="changeBackgroundColorButton">Change Background Color</button>
+        <button type="button" id="changeClockColorButton">Change Clock Color</button>
+      </div>
     </div>
-    <div>
-      <h4>Refresh Interval: <span id="refreshInterval"></span> ms</h4>
-      <button type="button" id="increaseRefresh">Increase</button>
-      <button type="button" id="decreaseRefresh">Decrease</button>
-    </div>
-    <script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
+
     <script src="javascript-digital-clock.js"></script>
   </body>
 </html>
