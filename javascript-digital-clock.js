@@ -9,13 +9,21 @@ function refreshTimeValues() {
 
 	// set time values in DOM
 	var hours = document.getElementById('hours');
-	hours.innerHTML = currentHours;
+	hours.innerHTML = zeroPadValue(currentHours);
 
 	var minutes = document.getElementById('minutes');
-	minutes.innerHTML = currentMinutes;
+	minutes.innerHTML = zeroPadValue(currentMinutes);
 
 	var seconds = document.getElementById('seconds');
-	seconds.innerHTML = currentSeconds;
+	seconds.innerHTML = zeroPadValue(currentSeconds);
+}
+
+function zeroPadValue(value) {
+	if (value < 10) {
+		return "0" + value;
+	} else {
+		return value;
+	}
 }
 
 function hideLoadingStatus() {
