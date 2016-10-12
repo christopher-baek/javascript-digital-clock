@@ -58,7 +58,7 @@ function refreshMinuteBasedColor() {
 		color = 'black';
 	}
 
-	var clock = document.getElementById('clock');
+	var clock = document.getElementById('minutes');
 	clock.style.color = color;
 }
 
