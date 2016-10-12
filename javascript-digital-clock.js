@@ -87,17 +87,23 @@ function updateBackgroundChangeDate() {
 }
 
 /*
- * Updates the background color to a random color value.
+ * Updates the background color to a random color value. Continually chooses
+ * values until a value that does NOT match the clock value is chosen.
  */
 function updateBackgroundColor() {
-	backgroundColor = selectRandomColor();
+	while (backgroundColor != clockColor) {
+		backgroundColor = selectRandomColor();
+	}
 }
 
 /*
- * Updates the clock color to a random color value.
+ * Updates the clock color to a random color value. Continually chooses
+ * values until a value that does NOT match the background value is chosen.
  */
 function updateClockColor() {
-	clockColor = selectRandomColor();
+	while (clockColor != backgroundColor) {
+		clockColor = selectRandomColor();
+	}
 }
 
 /*
