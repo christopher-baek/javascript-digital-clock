@@ -1,8 +1,17 @@
+var COLORS = ['aqua', 'fuchsia', 'gray',
+              'green', 'lime', 'maroon',
+              'navy', 'olive', 'purple',
+              'red', 'silver', 'teal',
+              'yellow'];
+
 var DIGITS_HOUR_MIN_SEC = 2;
 var DIGITS_MILLISECOND = 3;
 var REFRESH_INTERVAL = 500;
+var BACKGROUND_CHANGE_INTERVAL = 5;
+var MINUTES_PER_HOUR = 60;
 var TIMER;
 var CURRENT_TIME;
+var BACKGROUND_CHANGE_TIME;
 
 function refreshCurrentTime() {
 	CURRENT_TIME = new Date();
@@ -29,6 +38,10 @@ function refreshTimeValues() {
 	milliseconds.innerHTML = zeroPadValue(currentMilliseconds, DIGITS_MILLISECOND);
 }
 
+function refreshBackgroundChangeTime() {
+	BACKGROUND_CHANGE_TIME = CURRENT_TIME;
+}
+
 function refreshMinuteBasedColor() {
 	var currentMinutes = CURRENT_TIME.getMinutes();
 
@@ -49,10 +62,39 @@ function refreshMinuteBasedColor() {
 	clock.style.color = color;
 }
 
+function refreshBackgroundColor() {
+	var currentMinutes = CURRENT_TIME.getMinutes();
+	var backgroundChangeMinutes = BACKGROUND_CHANGE_TIME.getMinutes();
+
+	// current time went over the hour
+	// add minutes per hour to simplify
+	// math
+	if (currentMinutes < backgroundChangeMinutes) {
+		currentMinutes += MINUTES_PER_HOUR;
+	}
+
+	if (currentMinutes - backgroundChangeMinutes > BACKGROUND_CHANGE_INTERVAL) {
+		setBackgroundToRandomColor();
+		refreshBackgroundChangeTime();
+	}
+}
+
+function setBackgroundToRandomColor() {
+	var color = selectRandomColor();
+	document.body.style.backgroundColor = color;
+}
+
+function selectRandomColor() {
+	var index = Math.trunc(Math.random() * COLORS.length);
+	var color = COLORS[index];
+	return color;
+}
+
 function refreshClock() {
 	refreshCurrentTime();
 	refreshTimeValues();
 	refreshMinuteBasedColor();
+	refreshBackgroundColor();
 }
 
 function zeroPadValue(value, digits) {
@@ -102,10 +144,11 @@ function initialize() {
 	initializeRefreshControls();
 	refreshRefreshInterval();
 	refreshCurrentTime();
+	refreshBackgroundChangeTime();
 	refreshTimeValues();
 	hideLoadingStatus();
 	showClock();
-	startTimer();	
+	startTimer();
 }
 
 function startTimer() {
