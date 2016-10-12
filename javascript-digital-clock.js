@@ -2,14 +2,18 @@ var DIGITS_HOUR_MIN_SEC = 2;
 var DIGITS_MILLISECOND = 3;
 var REFRESH_INTERVAL = 500;
 var TIMER;
+var CURRENT_TIME;
+
+function refreshCurrentTime() {
+	CURRENT_TIME = new Date();
+}
 
 function refreshTimeValues() {
 	// get current time values
-	var now = new Date();
-	var currentHours = now.getHours();
-	var currentMinutes = now.getMinutes();
-	var currentSeconds = now.getSeconds();
-	var currentMilliseconds = now.getMilliseconds();
+	var currentHours = CURRENT_TIME.getHours();
+	var currentMinutes = CURRENT_TIME.getMinutes();
+	var currentSeconds = CURRENT_TIME.getSeconds();
+	var currentMilliseconds = CURRENT_TIME.getMilliseconds();
 
 	// set time values in DOM
 	var hours = document.getElementById('hours');
@@ -23,6 +27,32 @@ function refreshTimeValues() {
 
 	var milliseconds = document.getElementById('milliseconds');
 	milliseconds.innerHTML = zeroPadValue(currentMilliseconds, DIGITS_MILLISECOND);
+}
+
+function refreshMinuteBasedColor() {
+	var currentMinutes = CURRENT_TIME.getMinutes();
+
+	var even = (currentMinutes % 2 == 0);
+
+	// change the color to black if it
+	// is an odd minute and another color
+	// if it is an even minute
+	var color;
+
+	if (even) {
+		color = 'blue';
+	} else {
+		color = 'black';
+	}
+
+	var clock = document.getElementById('clock');
+	clock.style.color = color;
+}
+
+function refreshClock() {
+	refreshCurrentTime();
+	refreshTimeValues();
+	refreshMinuteBasedColor();
 }
 
 function zeroPadValue(value, digits) {
@@ -71,6 +101,7 @@ function showClock() {
 function initialize() {
 	initializeRefreshControls();
 	refreshRefreshInterval();
+	refreshCurrentTime();
 	refreshTimeValues();
 	hideLoadingStatus();
 	showClock();
@@ -78,7 +109,7 @@ function initialize() {
 }
 
 function startTimer() {
-	TIMER = setInterval(refreshTimeValues, REFRESH_INTERVAL);
+	TIMER = setInterval(refreshClock, REFRESH_INTERVAL);
 }
 
 function stopTimer() {
